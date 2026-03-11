@@ -30,21 +30,21 @@ Imagine starting every workday by reading your entire diary from cover to cover 
 
 ### How to Use It
 
-**Step 1:** Install the skill into your OpenClaw workspace:
+**Just tell your agent:**
 
-```bash
-mkdir -p ~/.openclaw/workspace/skills/bonsai-memory
-curl -sL https://raw.githubusercontent.com/felixsim/bonsai-memory/main/SKILL.md \
-  -o ~/.openclaw/workspace/skills/bonsai-memory/SKILL.md
-```
+> *Review and install this OpenClaw skill: https://github.com/felixsim/bonsai-memory*
+>
+> *Before installing, read the repo's SKILL.md, README, and LICENSE. Tell me what it does, what files it will create or modify in my workspace, and whether it needs any API keys or external services.*
+>
+> *Check for conflicts — do I already have a skill with the same name or similar purpose? Will it modify files I depend on (MEMORY.md, AGENTS.md, anything in memory/)? Are there any commands in SKILL.md that look risky (network calls, credential access, file deletions without backups)?*
+>
+> *If anything looks wrong, stop and show me the exact lines. Otherwise, give me your assessment and wait for my approval before installing.*
+>
+> *Install only — do NOT run or activate the skill yet. I'll decide when to use it.*
 
-**Step 2:** Tell your agent:
+Your agent reads the repo, audits it for safety, checks your workspace for conflicts, and asks for your go-ahead before touching anything. No blind installs.
 
-> *"Restructure your memory using the bonsai-memory skill."*
-
-OpenClaw auto-discovers skills in your workspace. Once installed, the agent reads the instructions and does the migration itself — no coding, no configuration.
-
-**Or skip install entirely:** Copy the contents of [`SKILL.md`](SKILL.md) and paste it directly into your agent's chat. The instructions are self-contained.
+**Rollback:** Delete the `skills/bonsai-memory` folder — skills are self-contained. If the skill has already restructured your memory, restore from the backup it creates (`memory/MEMORY.md.bak`).
 
 ### Real Results
 
@@ -235,7 +235,25 @@ A vector database solves a different problem (similarity search over embeddings)
 
 ## Installation
 
-### Option 1: One-Line Install (OpenClaw)
+### Option 1: Ask Your Agent (Recommended)
+
+Paste this into your agent's chat:
+
+> *Review and install this OpenClaw skill: https://github.com/felixsim/bonsai-memory*
+>
+> *Before installing, read the repo's SKILL.md, README, and LICENSE. Tell me what it does, what files it will create or modify in my workspace, and whether it needs any API keys or external services.*
+>
+> *Check for conflicts — do I already have a skill with the same name or similar purpose? Will it modify files I depend on (MEMORY.md, AGENTS.md, anything in memory/)? Are there any commands in SKILL.md that look risky (network calls, credential access, file deletions without backups)?*
+>
+> *If anything looks wrong, stop and show me the exact lines. Otherwise, give me your assessment and wait for my approval before installing.*
+>
+> *Install only — do NOT run or activate the skill yet. I'll decide when to use it.*
+
+Your agent reviews the repo, audits for safety, checks for conflicts, and waits for your approval. No blind installs, no surprises.
+
+When you're ready to activate: *"Restructure your memory using the bonsai-memory skill."*
+
+### Option 2: One-Line Install (Manual)
 
 ```bash
 mkdir -p ~/.openclaw/workspace/skills/bonsai-memory && \
@@ -243,20 +261,16 @@ curl -sL https://raw.githubusercontent.com/felixsim/bonsai-memory/main/SKILL.md 
   -o ~/.openclaw/workspace/skills/bonsai-memory/SKILL.md
 ```
 
-OpenClaw auto-discovers skills in `~/.openclaw/workspace/skills/`. Once installed, your agent will see `bonsai-memory` in its available skills list and can follow the migration instructions when asked.
+OpenClaw auto-discovers skills in `~/.openclaw/workspace/skills/`.
 
-Then tell your agent: *"Restructure your memory using the bonsai-memory skill."*
+### Option 3: Copy-Paste (Any Agent Framework)
 
-### Option 2: Copy-Paste (Any Agent Framework)
+Open [`SKILL.md`](SKILL.md), copy the entire contents, and paste it directly into your agent's chat. The instructions are self-contained — no installation needed.
 
-Open [`SKILL.md`](SKILL.md), copy the entire contents, and paste it into your agent's chat. Tell the agent to follow the instructions. No installation, no dependencies — the instructions are fully self-contained.
+### Rollback
 
-### Option 3: Clone the Repo
-
-```bash
-git clone https://github.com/felixsim/bonsai-memory.git
-cp bonsai-memory/SKILL.md ~/.openclaw/workspace/skills/bonsai-memory/SKILL.md
-```
+- **Before activation:** Delete `skills/bonsai-memory/` — nothing else was touched.
+- **After activation:** Restore from `memory/MEMORY.md.bak` (the skill always creates a backup before modifying your memory).
 
 ---
 
