@@ -1,5 +1,9 @@
 # 🌿 Bonsai Memory — Prune Your AI Agent's Context Window
 
+<p align="center">
+  <img src="assets/bonsai-hero.png" alt="Bonsai Memory — Hierarchical memory for AI agents" width="800">
+</p>
+
 **Reduce your AI agent's token usage by 70-95%.** Bonsai Memory restructures flat memory files into a carefully pruned hierarchy — a slim index on boot, domain branches on demand. Like shaping a bonsai: intentional, minimal, nothing wasted.
 
 Built for [OpenClaw](https://openclaw.ai) agents. Works with any LLM agent framework that uses persistent memory files.
