@@ -56,7 +56,7 @@ while IFS= read -r -d '' filepath; do
       general_age_violations=$(( general_age_violations + 1 ))
     fi
   fi
-done < <(find "$DOMAINS_DIR" -name "*.md" -not -name "_index.md" -print0 2>/dev/null)
+done < <(find "$DOMAINS_DIR" -name "*.md" -not -name "_index.md" -not -name "*__DELETE*" -print0 2>/dev/null)
 
 # Generate per-domain _index.md files
 for domain_dir in "$DOMAINS_DIR"/*/; do
@@ -91,7 +91,7 @@ for domain_dir in "$DOMAINS_DIR"/*/; do
       echo "### ${fname} (~${ftokens} tokens)"
       echo "${first_line:-[no content]}"
       echo ""
-    done < <(find "$domain_dir" -maxdepth 1 -name "*.md" -not -name "_index.md" -print0 2>/dev/null | sort -z)
+    done < <(find "$domain_dir" -maxdepth 1 -name "*.md" -not -name "_index.md" -not -name "*__DELETE*" -print0 2>/dev/null | sort -z)
   } > "$domain_index"
 done
 
@@ -113,7 +113,7 @@ done
       fn=$(basename "$fp" .md)
       [[ "$fn" == _* ]] && continue
       file_list+="${fn}, "
-    done < <(find "$DOMAINS_DIR/$domain" -maxdepth 1 -name "*.md" -not -name "_index.md" -print0 2>/dev/null | sort -z)
+    done < <(find "$DOMAINS_DIR/$domain" -maxdepth 1 -name "*.md" -not -name "_index.md" -not -name "*__DELETE*" -print0 2>/dev/null | sort -z)
     file_list="${file_list%, }"
 
     echo "### ${domain^} (~${tokens} tokens, ${files} files)"
